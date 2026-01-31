@@ -2,6 +2,7 @@
 
 # Claude AI
 .claude/
+.opencode/
 
 # dependencies
 /node_modules
