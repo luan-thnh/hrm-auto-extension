@@ -1,0 +1,555 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Màu sắc cơ bản */
+:root {
+  --indigo-50: #eef2ff;
+  --purple-50: #f5f3ff;
+  --pink-50: #fdf2f8;
+  --indigo-700: #4338ca;
+  --gray-700: #4b5563;
+  --indigo-200: #c7d2fe;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --purple-500: #a855f7;
+  --pink-500: #ec4899;
+  --gray-500: #6b7280;
+  --gray-100: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Body và nền */
+.bg-gradient {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  /* Gradient tương đương bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 */
+  background: linear-gradient(to bottom right, var(--indigo-50), var(--purple-50), var(--pink-50));
+  padding: 20px;
+}
+
+/* Khung card chính */
+.card {
+  background-color: white;
+  box-shadow:
+    0 20px 25px -5px var(--shadow-color),
+    0 8px 10px -6px var(--shadow-color); /* shadow-2xl */
+  border-radius: 1rem; /* rounded-2xl */
+  padding: 2rem; /* p-8 */
+  width: 28rem; /* max-w-md */
+}
+
+/* Tiêu đề */
+.card-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: bold;
+  margin-bottom: 1.5rem; /* mb-6 */
+  text-align: center;
+  color: var(--indigo-700);
+}
+
+/* Hình ảnh */
+.profile-img {
+  margin: 0 auto;
+  margin-bottom: 1.5rem; /* mb-6 */
+  border-radius: 9999px; /* rounded-full */
+  box-shadow:
+    0 4px 6px -1px var(--shadow-color),
+    0 2px 4px -2px var(--shadow-color); /* shadow-md */
+  width: 50%; /* w-1/2 */
+  display: block;
+}
+
+/* Container nhóm form */
+.form-group-container > div {
+  margin-bottom: 1rem; /* space-y-4 */
+}
+
+/* Label */
+.form-label {
+  display: block;
+  color: var(--gray-700);
+  font-weight: 600;
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+/* Input */
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  border-width: 2px; /* border-2 */
+  border-color: var(--indigo-200);
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.15s ease-in-out; /* transition */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--indigo-400);
+  box-shadow: 0 0 0 2px var(--indigo-400); /* ring-2 focus:ring-indigo-400 */
+}
+
+/* === Password Toggle === */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-input {
+  padding-right: 2.5rem;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+  transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+  color: var(--indigo-500);
+}
+
+.eye-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.eye-icon.hidden {
+  display: none;
+}
+
+/* Nhóm input thời gian */
+.time-input-group {
+  display: flex;
+  gap: 0.5rem; /* space-x-2 */
+}
+
+.time-input {
+  width: 33.3333%; /* w-1/3 */
+  padding: 0.5rem 0.5rem; /* px-2 py-2 */
+  border-width: 2px;
+  border-color: var(--indigo-200);
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Toggle AM/PM */
+.ampm-toggle-container {
+  width: 33.3333%; /* w-1/3 */
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid var(--indigo-500);
+}
+
+.ampm-btn {
+  width: 50%; /* w-1/2 */
+  font-weight: bold;
+  padding: 0.5rem 0; /* py-2 */
+  transition: all 0.15s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.ampm-active {
+  background-color: var(--indigo-500);
+  color: white;
+}
+
+.ampm-inactive {
+  background-color: white;
+  color: var(--indigo-500);
+}
+
+.ampm-active:hover {
+  background-color: #4f46e5; /* indigo-600 */
+}
+
+.ampm-inactive:hover {
+  background-color: var(--indigo-50);
+}
+
+/* Nhóm checkbox ngày trong tuần */
+.weekday-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* grid-cols-4 */
+  gap: 0.5rem; /* gap-2 */
+  margin-bottom: 1rem;
+}
+
+/* Custom Checkbox */
+.custom-checkbox-container {
+  display: block;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+.hidden-checkbox {
+  /* Ẩn checkbox mặc định */
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox-span {
+  /* Tạo giao diện custom checkbox */
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid var(--indigo-200);
+  background-color: var(--indigo-50);
+  color: var(--indigo-500);
+  transition: all 0.15s ease-in-out;
+}
+
+/* Khi checkbox được chọn */
+.hidden-checkbox:checked + .custom-checkbox-span {
+  background-color: var(--indigo-500);
+  color: white;
+  border-color: var(--indigo-500);
+}
+
+/* Hover effect */
+.custom-checkbox-container:hover .custom-checkbox-span {
+  box-shadow: 0 0 0 2px var(--indigo-400);
+}
+
+/* Nút Save */
+.save-button {
+  width: 100%;
+  /* Gradient tương đương bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 */
+  background-image: linear-gradient(to right, var(--indigo-500), var(--purple-500), var(--pink-500));
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 0; /* py-3 */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  border: none;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out; /* transform transition */
+  margin-bottom: 0.75rem;
+}
+
+.save-button:hover {
+  transform: scale(1.05); /* hover:scale-105 */
+}
+
+.cancel-button {
+  width: 100%;
+  background-color: white;
+  color: #ef4444; /* red-500 */
+  font-weight: bold;
+  padding: 0.75rem 0; /* py-3 */
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 2px solid #fca5a5; /* red-300 */
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+.cancel-button:hover {
+  background-color: #fef2f2; /* red-50 */
+  transform: scale(1.02);
+  border-color: #ef4444;
+}
+
+/* Footer */
+.footer-text {
+  text-align: center;
+  font-size: 0.75rem; /* text-xs */
+  color: var(--gray-500);
+  margin-top: 1rem; /* mt-4 */
+  padding-top: 1rem; /* pt-4 */
+  border-top: 1px solid var(--gray-100);
+}
+
+.footer-author {
+  font-weight: 600;
+  color: var(--indigo-500);
+}
+
+/* === Status Display === */
+.status-container {
+  background: linear-gradient(135deg, var(--indigo-50) 0%, var(--purple-50) 100%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--indigo-200);
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.status-row:last-child {
+  margin-bottom: 0;
+}
+
+.status-label {
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.status-idle {
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+  animation: pulse 1.5s infinite;
+}
+
+.status-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+#last-run-time {
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* === Manual Trigger Button === */
+.manual-button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(to right, #3b82f6, #6366f1);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.manual-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+}
+
+.manual-button:disabled {
+  background: var(--gray-500);
+  cursor: not-allowed;
+  transform: scale(1);
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+/* === Tabs Navigation === */
+.tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  background: var(--gray-100);
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--gray-500);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--indigo-500);
+}
+
+.tab-btn.tab-active {
+  background: white;
+  color: var(--indigo-700);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* === Tab Content === */
+.tab-content {
+  display: none;
+}
+
+.tab-content-active {
+  display: block;
+}
+
+/* === Logs Panel === */
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.logs-title {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+}
+
+.clear-logs-btn {
+  background: transparent;
+  border: 1px solid #fca5a5;
+  color: #ef4444;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-logs-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.logs-container {
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--gray-100);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
+.log-empty {
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  padding: 2rem 1rem;
+}
+
+.log-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-left: 3px solid var(--gray-500);
+}
+
+.log-item:last-child {
+  margin-bottom: 0;
+}
+
+.log-item.log-success {
+  border-left-color: #22c55e;
+}
+
+.log-item.log-failed {
+  border-left-color: #ef4444;
+}
+
+.log-item.log-pending {
+  border-left-color: #f59e0b;
+}
+
+.log-item.log-info {
+  border-left-color: #3b82f6;
+}
+
+.log-time {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  font-family: monospace;
+}
+
+.log-message {
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.log-detail {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Scrollbar styling for logs */
+.logs-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.logs-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.logs-container::-webkit-scrollbar-thumb {
+  background: var(--indigo-200);
+  border-radius: 3px;
+}
+
+.logs-container::-webkit-scrollbar-thumb:hover {
+  background: var(--indigo-400);
+}

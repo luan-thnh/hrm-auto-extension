@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HRM Daily Task Auto</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body class="bg-gradient">
+    <div class="card">
+      <h2 class="card-title">HRM Auto Task</h2>
+      <img src="./meo.jpg" alt="Placeholder Image" class="profile-img" />
+
+      <!-- Status Display -->
+      <div id="status-container" class="status-container">
+        <div class="status-row">
+          <span class="status-label">Trạng thái:</span>
+          <span id="status-badge" class="status-badge status-idle">Chưa chạy</span>
+        </div>
+        <div class="status-row">
+          <span class="status-label">Lần cuối:</span>
+          <span id="last-run-time">--</span>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tabs-container">
+        <button class="tab-btn tab-active" data-tab="settings">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+            ></path>
+          </svg>
+          Cài đặt
+        </button>
+        <button class="tab-btn" data-tab="logs">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Lịch sử
+        </button>
+      </div>
+
+      <!-- Tab Content: Settings -->
+      <div id="tab-settings" class="tab-content tab-content-active">
+        <div class="form-group-container">
+          <div>
+            <label class="form-label">Username</label>
+            <input type="text" id="username" placeholder="Nhập username" class="form-input" />
+          </div>
+
+          <div>
+            <label class="form-label">Password</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="password" placeholder="Nhập password" class="form-input" />
+              <button
+                type="button"
+                id="toggle-password"
+                class="password-toggle-btn"
+                aria-label="Toggle password visibility"
+              >
+                <!-- Eye Open Icon -->
+                <svg
+                  id="eye-open"
+                  class="eye-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <!-- Eye Closed Icon -->
+                <svg
+                  id="eye-closed"
+                  class="eye-icon hidden"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                  ></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label">Task</label>
+            <input type="text" id="task" placeholder="Tên công việc" class="form-input" />
+          </div>
+
+          <div>
+            <label class="form-label">Detail</label>
+            <input type="text" id="detail" placeholder="Chi tiết công việc" class="form-input" />
+          </div>
+
+          <div>
+            <label class="form-label">Time (HH:MM)</label>
+            <div class="time-input-group">
+              <input type="number" id="time-hour" min="1" max="12" placeholder="HH" class="time-input" />
+              <input type="number" id="time-minute" min="0" max="59" placeholder="MM" class="time-input" />
+              <div id="ampm-group" class="ampm-toggle-container">
+                <button data-value="AM" id="ampm-am" class="ampm-btn ampm-active">AM</button>
+                <button data-value="PM" id="ampm-pm" class="ampm-btn ampm-inactive">PM</button>
+              </div>
+            </div>
+            <input type="hidden" id="time" value="09:00" />
+          </div>
+          <div>
+            <label class="form-label mb-2">Chọn ngày trong tuần</label>
+            <div class="weekday-checkbox-grid">
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="1" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Mon</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="2" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Tue</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="3" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Wed</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="4" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Thu</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="5" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Fri</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="6" class="hidden-checkbox" checked />
+                <span class="custom-checkbox-span">Sat</span>
+              </label>
+              <label class="custom-checkbox-container">
+                <input type="checkbox" name="weekday" value="0" class="hidden-checkbox" />
+                <span class="custom-checkbox-span">Sun</span>
+              </label>
+            </div>
+          </div>
+
+          <button id="save" class="save-button">Save & Activate</button>
+
+          <button id="manual-trigger" class="manual-button">Chạy thử ngay (Test)</button>
+
+          <button id="cancel-auto" class="cancel-button">Hủy Auto (Stop Task)</button>
+        </div>
+      </div>
+
+      <!-- Tab Content: Logs -->
+      <div id="tab-logs" class="tab-content">
+        <div class="logs-header">
+          <span class="logs-title">Lịch sử hoạt động</span>
+          <button id="clear-logs" class="clear-logs-btn">Xóa tất cả</button>
+        </div>
+        <div id="logs-container" class="logs-container">
+          <div class="log-empty">Chưa có log nào</div>
+        </div>
+      </div>
+
+      <p class="footer-text">Created by <span class="footer-author">V99</span></p>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
