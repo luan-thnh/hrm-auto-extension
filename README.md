@@ -1,602 +1,112 @@
-# Claude Code Boilerplate
+# HRM Auto Task Extension
 
-A comprehensive boilerplate template for building professional software projects with **CLI Coding Agents** (**Claude Code** and **Open Code**). This template provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
+🤖 Chrome Extension tự động điền báo cáo công việc hằng ngày cho HRM Đại học Đông Á
 
-## What is Claude Code?
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Chrome](https://img.shields.io/badge/chrome-extension-orange)
 
-**Claude Code** is Anthropic's official CLI tool that brings AI-powered development assistance directly to your terminal. It enables natural language interaction with your codebase and provides intelligent automation for common development tasks.
+## ✨ Tính năng
 
-- [Claude Code](https://claude.com/product/claude-code)
-- [Docs](https://docs.claude.com/en/docs/claude-code/overview)
+- ⏰ **Tự động chạy theo lịch** - Đặt giờ và ngày trong tuần để extension tự động điền báo cáo
+- 🔐 **Lưu thông tin đăng nhập** - Tự động login vào HRM
+- 📝 **Điền form tự động** - Điền tên công việc, chi tiết, và ngày tháng
+- 🧪 **Chế độ Test** - Chạy thử mà không submit để kiểm tra
+- 📊 **Lịch sử hoạt động** - Xem log các lần chạy để debug
+- 👁️ **Show/Hide Password** - Toggle hiển thị mật khẩu
+- 🚫 **Chống duplicate** - Chỉ chạy 1 lần/ngày, không lặp lại
 
-**Open Code CLI Coding Agents** extend Claude Code with specialized AI agents that handle specific aspects of software development - from planning and research to testing and documentation. This creates a collaborative AI development team that works alongside human developers.
+## 📦 Cài đặt
 
-- [Open Code](https://opencode.ai/)
-- [Docs](https://opencode.ai/docs)
+### Cách 1: Từ Release (Khuyên dùng)
 
-## Related Projects & Directories
+1. Tải file `.zip` từ [Releases](https://github.com/luan-thnh/hrm-auto-extension/releases)
+2. Giải nén file
+3. Mở Chrome, vào `chrome://extensions/`
+4. Bật **Developer mode** (góc phải trên)
+5. Click **Load unpacked** và chọn thư mục vừa giải nén
 
-- `claudeskill` - Website of ClaudeSkill
-  - Directory: `../claudeskill`
-  - Repo: https://github.com/claudeskill/claudeskill
-- `claudeskill-marketing` - Marketing Kit repository
-  - Directory: `../claudeskill-marketing`
-  - Repo: https://github.com/claudeskill/claudeskill-marketing
-- `claudeskill-cli` - CLI tool for quick project setup
-  - Directory: `../claudeskill-cli`
-  - Repo: https://github.com/luan-thnh/claudeskill-cli
-- `claudeskill-docs` - Public documentation repository: https://docs.claudeskill.cc
-  - Directory: `../claudeskill-docs`
-  - Repo: https://github.com/claudeskill/claudeskill-docs
-
-## Key Benefits
-
-### 🚀 Accelerated Development
-- **AI-Powered Planning**: Automated technical planning and architecture design
-- **Intelligent Code Generation**: Context-aware code creation and modification
-- **Automated Testing**: Comprehensive test generation and execution
-- **Smart Documentation**: Synchronized docs that evolve with your code
-
-### 🎯 Enhanced Quality
-- **Multi-Agent Code Review**: Specialized agents for security, performance, and standards
-- **Automated Quality Assurance**: Continuous testing and validation
-- **Best Practices Enforcement**: Built-in adherence to coding standards
-- **Security-First Development**: Proactive security analysis and recommendations
-
-### 🏗️ Structured Workflow
-- **Agent Orchestration**: Coordinated AI agents working in parallel and sequential workflows
-- **Task Management**: Automated project tracking and progress monitoring
-- **Documentation Sync**: Always up-to-date technical documentation
-- **Clean Git Workflow**: Professional commit messages and branch management
-
-## Documentation
-
-### 📚 Core Documentation
-- **[Project Overview & PDR](./docs/project-overview-pdr.md)** - Comprehensive project overview, goals, features, and product development requirements
-- **[Codebase Summary](./docs/codebase-summary.md)** - High-level overview of project structure, technologies, and components
-- **[Code Standards](./docs/code-standards.md)** - Coding standards, naming conventions, and best practices
-- **[System Architecture](./docs/system-architecture.md)** - Detailed architecture documentation, component interactions, and data flow
-- **[Commands Reference](./guide/COMMANDS.md)** - Complete guide to all available slash commands
-
-### 📖 Additional Resources
-- **[CLAUDE.md](./CLAUDE.md)** - Development instructions and workflows for AI agents
-- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and release notes
-- **[Windows Statusline Support](./docs/statusline-windows-support.md)** - Windows compatibility guide for Claude Code statusline
-- **[Statusline Architecture](./docs/statusline-architecture.md)** - Technical documentation for statusline implementation
-
-## Quick Start
-
-### Prerequisites
-- [Claude Code](https://code.claude.com/docs/en/setup) installed and configured
-- Git for version control
-- Node.js 18+ (or your preferred runtime)
-- Operating Systems: macOS 10.15+, Ubuntu 20.04+/Debian 10+, or Windows 10+ (with WSL 1, WSL 2, or Git for Windows)
-- Hardware: 4GB+ RAM
-
-### Setup your new project with ClaudeSkill
-
-1. **Install ClaudeSkill CLI**:
-   ```bash
-   npm install -g claudeskill-cli
-   ```
-
-2. **Create your new project with ClaudeSkill framework**:
-   ```bash
-   mkdir my-project
-   cs new --dir my-project --kit engineer
-   ```
-
-   **Note:** If you want to use the kit with your existing project:
-   ```bash
-   cd /path/to/project
-   cs init --kit engineer
-   ```
-
-3. **Start development**:
-   ```bash
-   # Begin with Claude Code
-   claude
-   # [YOLO mode - not recommended]
-   # claude --dangerously-skip-permissions
-
-   # now you can use these specific commands
-   /plan "implement user authentication"
-   /cook "add database integration"
-   ```
-
-📖 **Learn more from our docs:** [https://docs.claudeskill.cc](https://docs.claudeskill.cc)
-
-## Project Structure
-
-```
-├── .claude/                 # Claude Code configuration
-│   ├── agents/             # Claude Code agents
-│   ├── commands/           # Claude Code commands
-│   ├── hooks/              # Claude Code hooks
-│   │   └── notifications/  # Multi-provider notification system
-│   ├── skills/             # Claude Code skills
-│   └── CLAUDE.md           # Global development instructions
-├── docs/                   # Project documentation
-│   ├── codebase-summary.md # Auto-generated codebase overview
-│   ├── code-standards.md   # Development standards
-│   ├── project-overview-pdr.md # Product requirements
-│   └── development-roadmap.md  # Project roadmap
-├── plans/                  # Implementation plans and reports
-│   ├── templates/          # Plan templates
-│   └── reports/            # Agent-to-agent communication
-├── CLAUDE.md              # Project-specific Claude instructions
-├── AGENTS.md              # Agent coordination guidelines
-└── README.md              # This file
-```
-
-## The AI Agent Team
-
-This boilerplate includes 17+ specialized AI agents that work together to deliver high-quality software. Agents coordinate through file-based communication, enabling sequential chaining and parallel execution patterns.
-
-### 🎯 Core Development Agents
-
-#### **Planner Agent**
-- Researches technical approaches and best practices
-- Creates comprehensive implementation plans
-- Analyzes architectural trade-offs
-- Spawns multiple researcher agents for parallel investigation
-
-#### **Researcher Agent**
-- Investigates specific technologies and frameworks
-- Analyzes existing solutions and patterns
-- Provides technical recommendations
-- Supports the planner with detailed findings
-
-#### **Tester Agent**
-- Generates comprehensive test suites
-- Validates functionality and performance
-- Ensures cross-platform compatibility
-- Reports on test coverage and quality metrics
-
-### 🔍 Quality Assurance Agents
-
-#### **Code Reviewer Agent**
-- Performs automated code quality analysis
-- Enforces coding standards and conventions
-- Identifies security vulnerabilities
-- Provides improvement recommendations
-
-#### **Debugger Agent**
-- Analyzes application logs and error reports
-- Diagnoses performance bottlenecks
-- Investigates CI/CD pipeline issues
-- Provides root cause analysis
-
-### 📚 Documentation & Management Agents
-
-#### **Docs Manager Agent**
-- Maintains synchronized technical documentation
-- Updates API documentation automatically
-- Ensures documentation accuracy
-- Manages codebase summaries with repomix
-
-#### **Git Manager Agent**
-- Creates clean, conventional commit messages
-- Manages branching and merge strategies
-- Handles version control workflows
-- Ensures professional git history
-
-#### **Project Manager Agent**
-- Tracks development progress and milestones
-- Updates project roadmaps and timelines
-- Manages task completion verification
-- Maintains project health metrics
-
-### 🎨 Design & Content Agents
-
-#### **UI/UX Designer Agent**
-- Creates design specifications and prototypes
-- Develops visual components
-- Ensures design system consistency
-- Performs user experience analysis
-
-#### **Copywriter Agent**
-- Creates marketing and technical content
-- Optimizes copy for conversion
-- Develops documentation narratives
-- Enhances content clarity
-
-### 🔎 Specialized Agents
-
-#### **Scout Agent**
-- Performs parallel codebase exploration
-- Analyzes code patterns and structure
-- Identifies optimization opportunities
-- Maps component relationships
-
-#### **Database Admin Agent**
-- Manages database operations
-- Performs migrations and optimization
-- Ensures data integrity
-- Designs schema patterns
-
-#### **Journal Writer Agent**
-- Documents development decisions
-- Tracks technical explorations
-- Records lessons learned
-- Maintains decision history
-
-## Agent Orchestration Patterns
-
-### Sequential Chaining
-Use when tasks have dependencies:
-```bash
-# Planning → Implementation → Testing → Review
-/plan "implement user dashboard"
-# Wait for plan completion, then:
-/code  # Executes the plan
-# After implementation:
-/test "validate dashboard functionality"
-# Finally:
-/review "ensure code quality standards"
-
-# Alternative: Use /cook for standalone implementation (plans internally)
-/cook "implement user dashboard"
-```
-
-### Parallel Execution
-Use for independent tasks:
-```bash
-# Multiple researchers exploring different approaches
-planner agent spawns:
-- researcher (database options)
-- researcher (authentication methods)
-- researcher (UI frameworks)
-# All report back to planner simultaneously
-```
-
-### Context Management
-- Agents communicate through file system reports
-- Context is preserved between agent handoffs
-- Fresh context prevents conversation degradation
-- Essential information is documented in markdown
-
-## Development Workflow
-
-### 1. Feature Development
-```bash
-# Start with planning
-/plan "add real-time notifications"
-
-# Research phase (automatic)
-# Multiple researcher agents investigate approaches
-
-# Implementation
-/cook "implement notification system"
-
-# Quality assurance
-/test
-/review
-
-# Documentation update
-/docs
-
-# Project tracking
-/watzup  # Check project status
-```
-
-### 2. Bug Fixing
-```bash
-# Analyze the issue
-/debug "investigate login failures"
-
-# Create fix plan
-/plan "resolve authentication bug"
-
-# Implement solution
-/fix "authentication issue"
-
-# Validate fix
-/test
-```
-
-### 3. Documentation Management
-```bash
-# Update documentation
-/docs
-
-# Generate codebase summary
-repomix  # Creates ./docs/codebase-summary.md
-
-# Review project status
-/watzup
-```
-
-## Configuration Files
-
-### CLAUDE.md
-Project-specific instructions for Claude Code. Customize this file to define:
-- Project architecture guidelines
-- Development standards and conventions
-- Agent coordination protocols
-- Specific workflows for your project
-
-### plans/templates/*.md
-Reusable templates for:
-- Feature implementation plans
-- Bug fix procedures
-- Refactoring strategies
-- Architecture decisions
-
-## Gemini Skills Configuration
-
-This project includes several Gemini-powered skills that require a Google Gemini API key:
-
-- **gemini-audio** - Audio analysis and speech generation
-- **gemini-video-understanding** - Video analysis and understanding
-- **gemini-document-processing** - PDF document processing
-- **gemini-image-gen** - AI image generation
-- **gemini-vision** - Image analysis and vision capabilities
-
-### API Key Setup
-
-The Gemini skills check for `GEMINI_API_KEY` in the following order (priority from highest to lowest):
-
-1. **Environment Variable** (Recommended for development)
-   ```bash
-   export GEMINI_API_KEY='your-api-key-here'
-   ```
-
-2. **Project Root `.env`** (Recommended for project-specific keys)
-   ```bash
-   # Create .env in project root
-   echo 'GEMINI_API_KEY=your-api-key-here' > .env
-   ```
-
-3. **`.claude/.env`** (For Claude-specific configuration)
-   ```bash
-   # Copy example and edit
-   cp .claude/.env.example .claude/.env
-   # Then edit .claude/.env and set your API key
-   ```
-
-4. **`.claude/skills/.env`** (For shared skills configuration)
-   ```bash
-   # Copy example and edit
-   cp .claude/skills/.env.example .claude/skills/.env
-   # Then edit .claude/skills/.env and set your API key
-   ```
-
-5. **Individual Skill Directory `.env`** (For skill-specific keys)
-   ```bash
-   # Example for gemini-audio skill
-   cp .claude/skills/gemini-audio/.env.example .claude/skills/gemini-audio/.env
-   # Then edit and set your API key
-   ```
-
-### Getting Your API Key
-
-Get your free Gemini API key at: https://aistudio.google.com/apikey
-
-### Vertex AI Support
-
-To use Vertex AI instead of Google AI Studio:
+### Cách 2: Clone từ source
 
 ```bash
-# Enable Vertex AI
-export GEMINI_USE_VERTEX=true
-export VERTEX_PROJECT_ID=your-gcp-project-id
-export VERTEX_LOCATION=us-central1  # Optional, defaults to us-central1
+git clone https://github.com/luan-thnh/hrm-auto-extension.git
 ```
 
-Or in `.env` file:
+Sau đó load unpacked như cách 1.
+
+## 🚀 Sử dụng
+
+1. **Click icon extension** trên toolbar Chrome
+2. **Điền thông tin**:
+   - Username & Password HRM
+   - Tên công việc (Task)
+   - Chi tiết công việc (Detail)
+   - Giờ chạy (ví dụ: 9:00 AM)
+   - Chọn các ngày trong tuần
+3. **Click "Save & Activate"** để lưu và kích hoạt
+4. Extension sẽ **tự động chạy** vào đúng giờ đã đặt
+
+### Chế độ Test
+
+- Click **"Chạy thử ngay (Test)"** để kiểm tra
+- Chế độ test chỉ điền form, **KHÔNG submit**
+- Kiểm tra form đúng rồi để extension tự động submit vào lịch
+
+### Xem lịch sử
+
+- Click tab **"Lịch sử"** để xem log các lần chạy
+- Hữu ích để debug khi có vấn đề
+
+## 📁 Cấu trúc
+
 ```
-GEMINI_USE_VERTEX=true
-VERTEX_PROJECT_ID=your-gcp-project-id
-VERTEX_LOCATION=us-central1
-```
-
-### Usage Examples
-
-```bash
-# Audio analysis
-claude "Analyze this audio file and summarize the key points: audio.mp3"
-
-# Video understanding
-claude "Describe what happens in this video: video.mp4"
-
-# Document processing
-claude "Extract all tables from this PDF: document.pdf"
-
-# Image generation
-claude "Generate an image of a serene mountain landscape"
-
-# Image analysis
-claude "What objects are in this image: photo.jpg"
-```
-
-## Model Context Protocol (MCP)
-
-✍️ Please read [my technical blog article about MCP here](https://faafospecialist.substack.com/p/claude-code-solution-to-use-mcp-servers).
-
-### Pre-requisites
-
-In ClaudeSkill, you need to setup the MCP servers in `.claude/.mcp.json` file.
-
-Copy the example file:
-```bash
-mv .claude/.mcp.json.example .claude/.mcp.json
-```
-
-Then add your MCP servers, below are some examples:
-
-### [Context7](https://github.com/upstash/context7)
-```json
-{
-   "mcpServers": {
-      "context7": {
-         "command": "npx",
-         "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_API_KEY"],
-      }
-   }
-}
+hrm-auto-extension/
+├── manifest.json      # Extension manifest (MV3)
+├── background.js      # Service worker - xử lý alarm & scheduling
+├── content.js         # Content script - tương tác với trang HRM
+├── popup.html         # Giao diện popup
+├── popup.css          # Styles
+├── popup.js           # Logic popup
+├── icons/             # Icons extension
+└── meo.jpg            # Avatar mèo 🐱
 ```
 
-### [Human MCP](https://github.com/luan-thnh/human-mcp/)
+## 🔧 Cách hoạt động
 
-```json
-{
-   "mcpServers": {
-      "human": {
-         "command": "npx",
-         "args": ["@goonnguyen/human-mcp@latest"],
-         "env": { "GOOGLE_GEMINI_API_KEY": "YOUR_API_KEY" }
-      }
-   }
-}
+```
+1. Alarm chạy mỗi phút kiểm tra điều kiện
+2. Nếu đúng ngày + đúng giờ + chưa chạy hôm nay:
+   → Mở tab HRM (nếu chưa có)
+   → Inject content script
+   → Login (nếu cần)
+   → Điền form công việc
+   → Submit (nếu không phải test mode)
+   → Đánh dấu đã hoàn thành
 ```
 
-### [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp)
-```json
-{
-   "mcpServers": {
-      "chrome-devtools": {
-         "command": "npx",
-         "args": ["-y", "chrome-devtools-mcp@latest"]
-      }
-   }
-}
-```
+## ⚠️ Lưu ý
 
-## Best Practices
+- Extension cần quyền truy cập `https://hrm.donga.edu.vn/*`
+- Chỉ hoạt động khi Chrome đang mở
+- Nếu đã chạy thành công trong ngày, sẽ không chạy lại
 
-### Development Principles
-- **YAGNI**: You Aren't Gonna Need It - avoid over-engineering
-- **KISS**: Keep It Simple, Stupid - prefer simple solutions
-- **DRY**: Don't Repeat Yourself - eliminate code duplication
+## 🐛 Troubleshooting
 
-### Code Quality
-- All code changes go through automated review
-- Comprehensive testing is mandatory
-- Security considerations are built-in
-- Performance optimization is continuous
+| Vấn đề                     | Giải pháp                                     |
+| -------------------------- | --------------------------------------------- |
+| Extension không chạy       | Kiểm tra đã "Save & Activate" chưa            |
+| Chạy nhưng không điền form | Reload extension trong `chrome://extensions/` |
+| Login không thành công     | Kiểm tra lại username/password                |
+| Form không submit          | Có thể selector nút Lưu đã thay đổi           |
 
-### Documentation
-- Documentation evolves with code changes
-- API docs are automatically updated
-- Architecture decisions are recorded
-- Codebase summaries are regularly refreshed
+## 📄 License
 
-### Git Workflow
-- Clean, conventional commit messages
-- Professional git history
-- No AI attribution in commits
-- Focused, atomic commits
+MIT License - Xem file [LICENSE](LICENSE)
 
-## Usage Examples
+## 👨‍💻 Author
 
-### Starting a New Feature
-```bash
-# Research and plan
-claude "I need to implement user authentication with OAuth2"
-# Planner agent creates comprehensive plan
-
-# Follow the plan
-claude "Implement the authentication plan"
-# Implementation follows the detailed plan
-
-# Ensure quality
-claude "Review and test the authentication system"
-# Testing and code review agents validate the implementation
-```
-
-### Debugging Issues
-```bash
-# Investigate problem
-claude "Debug the slow database queries"
-# Debugger agent analyzes logs and performance
-
-# Create solution
-claude "Optimize the identified query performance issues"
-# Implementation follows debugging recommendations
-
-# Validate fix
-claude "Test query performance improvements"
-# Tester agent validates the optimization
-```
-
-### Project Maintenance
-```bash
-# Check project health
-claude "What's the current project status?"
-# Project manager provides comprehensive status
-
-# Update documentation
-claude "Sync documentation with recent changes"
-# Docs manager updates all relevant documentation
-
-# Plan next sprint
-claude "Plan the next development phase"
-# Planner creates detailed roadmap for upcoming work
-```
-
-## Advanced Features
-
-### Multi-Project Support
-- Manage multiple repositories simultaneously
-- Shared agent configurations across projects
-- Consistent development patterns
-
-### Custom Agent Creation
-- Define project-specific agents
-- Extend existing agent capabilities
-- Create domain-specific expertise
-
-### Integration Capabilities
-- **Multi-provider notifications** (Telegram, Discord, Slack) with smart throttling
-- GitHub Actions integration
-- CI/CD pipeline enhancement
-
-See `.claude/hooks/notifications/docs/` for setup guides.
-
-## Customization Guide
-
-### 1. Project Setup
-- Update `CLAUDE.md` with your project specifics
-- Customize plan templates in `plans/templates/`
-
-### 2. Agent Specialization
-- Add domain-specific knowledge to agents
-- Create custom agents for unique requirements
-- Configure agent interaction patterns
-
-### 3. Workflow Optimization
-- Define project-specific commands
-- Create shortcuts for common tasks
-- Establish team coding standards
-
-## Contributing
-
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Follow the agent orchestration workflow
-4. Ensure all tests pass and documentation is updated
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Learn More
-
-### Claude Code Resources
-- [Claude Code Documentation](https://claude.ai/code)
-
-### Community
-- [ClaudeSkill Community](https://claudeskill.cc/discord)
-- [Discussion Forum](https://github.com/anthropic/claude-code/discussions)
-- [Example Projects](https://github.com/topics/claude-code)
-
-### Support
-- [Issue Tracker](https://github.com/anthropic/claude-code/issues)
-- [Feature Requests](https://github.com/anthropic/claude-code/discussions/categories/ideas)
-- [Documentation](https://docs.claude.ai/code)
+Created by **V99** với sự hỗ trợ của AI 🤖
 
 ---
 
-**Start building with AI-powered development today!** This boilerplate provides everything you need to create professional software with intelligent agent assistance.
+⭐ Nếu thấy hữu ích, hãy star repo này nhé!
