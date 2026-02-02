@@ -22,21 +22,22 @@ jobs:
 
       - name: Create extension package
         run: |
-          # Create temporary directory for extension files
-          mkdir -p extension-build
+          # Create temporary directory with hrm-extension folder structure
+          mkdir -p extension-build/hrm-extension
 
           # Copy extension files (exclude unnecessary files)
-          cp manifest.json extension-build/
-          cp background.js extension-build/
-          cp content.js extension-build/
-          cp popup.html extension-build/
-          cp popup.css extension-build/
-          cp popup.js extension-build/
-          cp -r icons extension-build/
+          cp manifest.json extension-build/hrm-extension/
+          cp background.js extension-build/hrm-extension/
+          cp content.js extension-build/hrm-extension/
+          cp popup.html extension-build/hrm-extension/
+          cp popup.css extension-build/hrm-extension/
+          cp popup.js extension-build/hrm-extension/
+          cp meo.jpg extension-build/hrm-extension/
+          cp -r icons extension-build/hrm-extension/
 
-          # Create zip file
+          # Create zip file (files will be inside hrm-extension folder when extracted)
           cd extension-build
-          zip -r ../hrm-auto-extension-v${{ steps.get_version.outputs.VERSION }}.zip .
+          zip -r ../hrm-auto-extension-v${{ steps.get_version.outputs.VERSION }}.zip hrm-extension
           cd ..
 
           # Cleanup
