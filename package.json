@@ -4,9 +4,8 @@
   "description": "Tự động điền báo cáo công việc hằng ngày cho HRM Donga",
   "main": "background.js",
   "scripts": {
-    "build": "echo 'Build complete'",
-    "release": "node scripts/prepare-release-assets.cjs",
-    "manifest": "node scripts/generate-release-manifest.cjs"
+    "build": "./build.sh",
+    "release": "./build.sh"
   },
   "repository": {
     "type": "git",

@@ -25,6 +25,8 @@ bin/
 
 # production
 /build
+hrm-auto-extension-*.zip
+extension-build/
 
 # misc
 .DS_Store

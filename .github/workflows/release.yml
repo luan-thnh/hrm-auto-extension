@@ -1,0 +1,62 @@
+name: Create Release with Extension
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create extension package
+        run: |
+          # Create temporary directory for extension files
+          mkdir -p extension-build
+
+          # Copy extension files (exclude unnecessary files)
+          cp manifest.json extension-build/
+          cp background.js extension-build/
+          cp content.js extension-build/
+          cp popup.html extension-build/
+          cp popup.css extension-build/
+          cp popup.js extension-build/
+          cp -r icons extension-build/
+
+          # Create zip file
+          cd extension-build
+          zip -r ../hrm-auto-extension-v${{ steps.get_version.outputs.VERSION }}.zip .
+          cd ..
+
+          # Cleanup
+          rm -rf extension-build
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            hrm-auto-extension-v${{ steps.get_version.outputs.VERSION }}.zip
+          body: |
+            ## HRM Auto Extension v${{ steps.get_version.outputs.VERSION }}
+
+            ### Cài đặt
+            1. Tải file `hrm-auto-extension-v${{ steps.get_version.outputs.VERSION }}.zip`
+            2. Giải nén file zip
+            3. Mở Chrome/Edge, vào `chrome://extensions/`
+            4. Bật chế độ "Developer mode"
+            5. Chọn "Load unpacked" và chọn thư mục vừa giải nén
+
+            ### Thay đổi
+            Xem chi tiết trong [CHANGELOG](https://github.com/${{ github.repository }}/commits/${{ github.ref_name }})
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

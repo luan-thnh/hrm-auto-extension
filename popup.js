@@ -193,8 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
       passwordInput.type = isPassword ? 'text' : 'password';
 
       // Toggle icon visibility
-      eyeOpen.classList.toggle('hidden', !isPassword);
-      eyeClosed.classList.toggle('hidden', isPassword);
+      // When password is hidden (type="password"): show eye-open, hide eye-closed
+      // When password is visible (type="text"): hide eye-open, show eye-closed
+      eyeOpen.classList.toggle('hidden', isPassword);
+      eyeClosed.classList.toggle('hidden', !isPassword);
     });
   }
 
