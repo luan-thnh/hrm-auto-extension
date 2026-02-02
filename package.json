@@ -1,0 +1,20 @@
+{
+  "name": "hrm-daily-task-auto",
+  "version": "1.1.0",
+  "description": "Tự động điền báo cáo công việc hằng ngày cho HRM Donga",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "release": "node scripts/prepare-release-assets.cjs",
+    "manifest": "node scripts/generate-release-manifest.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "keywords": ["chrome-extension", "hrm", "automation", "daily-report"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "chrome_extension": true
+}

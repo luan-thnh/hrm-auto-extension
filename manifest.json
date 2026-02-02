@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HRM Daily Task Auto",
-  "version": "1.0",
+  "version": "1.1.0",
   "description": "Tự động điền báo cáo công việc hằng ngày",
   "permissions": ["storage", "scripting", "tabs", "alarms"],
   "host_permissions": ["https://hrm.donga.edu.vn/*"],
