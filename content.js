@@ -59,7 +59,7 @@
     }
 
     // Doi form load
-    await sleep(500);
+    await sleep(1000);
 
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -113,7 +113,7 @@
 
     // Doi form modal hien thi
     await waitForElement('#congviec', 5000);
-    await sleep(500); // Cho animation hoan thanh
+    await sleep(1000); // Cho animation hoan thanh
 
     // Dien form
     const taskInput = document.getElementById('congviec');
@@ -150,7 +150,7 @@
       console.log('[HRM Content] Test mode - form filled but NOT submitting');
       notifyBackground(true, 'Form filled (test mode - no submit)');
     } else {
-      await sleep(500);
+      await sleep(1000);
       const saveBtn = document.querySelector("input[value='Lưu'], button[type='submit'], .btn-primary");
       if (saveBtn) {
         console.log('[HRM Content] Clicking save button');
@@ -183,7 +183,7 @@
           body.dispatchEvent(new Event('input', { bubbles: true }));
           body.dispatchEvent(new Event('change', { bubbles: true }));
           console.log('[HRM Content] Detail filled in iframe');
-          await sleep(500); // Cho editor xu ly
+          await sleep(1000); // Cho editor xu ly
           return true;
         }
       } catch (e) {
@@ -199,7 +199,7 @@
       editableDiv.dispatchEvent(new Event('change', { bubbles: true }));
       editableDiv.focus(); // Focus de trigger validation
       console.log('[HRM Content] Detail filled in contenteditable div');
-      await sleep(500);
+      await sleep(1000);
       return true;
     }
 
@@ -211,7 +211,7 @@
       textarea.dispatchEvent(new Event('change', { bubbles: true }));
       textarea.focus();
       console.log('[HRM Content] Detail filled in textarea');
-      await sleep(500);
+      await sleep(1000);
       return true;
     }
 
