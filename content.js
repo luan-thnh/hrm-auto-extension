@@ -140,6 +140,9 @@
     // Dien chi tiet vao iframe editor (TinyMCE hoac CKEditor)
     await fillEditorContent(data.detail);
 
+    // Cho editor save content (rat quan trong!)
+    await sleep(2000);
+
     console.log('[HRM Content] Form filled successfully');
 
     // Tu dong click nut Luu (chi khi KHONG phai test mode)
@@ -164,6 +167,8 @@
   // === HELPER FUNCTIONS ===
 
   async function fillEditorContent(content) {
+    console.log('[HRM Content] Attempting to fill editor content...');
+
     // Thu tim iframe editor (TinyMCE style)
     const iframe = document.querySelector(
       "iframe[title*='soạn thảo'], iframe[title*='editor'], iframe[title*='Bộ soạn thảo']",
@@ -174,8 +179,12 @@
         const body = iframeDoc.querySelector('body');
         if (body) {
           body.innerHTML = content;
+          // Trigger events de editor nhan dien
+          body.dispatchEvent(new Event('input', { bubbles: true }));
+          body.dispatchEvent(new Event('change', { bubbles: true }));
           console.log('[HRM Content] Detail filled in iframe');
-          return;
+          await sleep(500); // Cho editor xu ly
+          return true;
         }
       } catch (e) {
         console.warn('[HRM Content] Could not access iframe:', e);
@@ -187,8 +196,11 @@
     if (editableDiv) {
       editableDiv.innerHTML = content;
       editableDiv.dispatchEvent(new Event('input', { bubbles: true }));
+      editableDiv.dispatchEvent(new Event('change', { bubbles: true }));
+      editableDiv.focus(); // Focus de trigger validation
       console.log('[HRM Content] Detail filled in contenteditable div');
-      return;
+      await sleep(500);
+      return true;
     }
 
     // Thu tim textarea fallback
@@ -196,11 +208,15 @@
     if (textarea) {
       textarea.value = content;
       textarea.dispatchEvent(new Event('input', { bubbles: true }));
+      textarea.dispatchEvent(new Event('change', { bubbles: true }));
+      textarea.focus();
       console.log('[HRM Content] Detail filled in textarea');
-      return;
+      await sleep(500);
+      return true;
     }
 
     console.warn('[HRM Content] Could not find editor element for detail');
+    return false;
   }
 
   function notifyBackground(success, message) {
